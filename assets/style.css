@@ -351,5 +351,9 @@ a:focus-visible,button:focus-visible,.hamburger:focus-visible,.drop-toggle:focus
    sharp rectangle. Pure-black cards + lighten blending make the black pixels disappear
    into the background, exactly like the header/footer — text only, no box. */
 .insta-card{background:#000}
-.insta-brand,.insta-brand-abro{background:transparent;mix-blend-mode:lighten}
-.parent-logo{mix-blend-mode:lighten}
+.insta-brand,.insta-brand-abro{background:transparent}
+.parent-logo{background:transparent}
+
+/* Hover fix: images zoom only — no blur, no darkening on hover (blur was damaging the design). */
+.card:hover .media img{transform:scale(1.07);filter:none}
+.split:hover .media img{transform:scale(1.05);filter:none}
