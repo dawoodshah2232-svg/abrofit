@@ -62,23 +62,68 @@
   });
   var form = document.getElementById('bmi-form');
   if (form) {
+    var unitInputs = form.querySelectorAll('input[name="bmi-unit"]');
+    var metricFields = document.getElementById('bmi-metric-fields');
+    var imperialFields = document.getElementById('bmi-imperial-fields');
+    function syncUnits(){
+      var u = form.querySelector('input[name="bmi-unit"]:checked');
+      var imp = u && u.value === 'imperial';
+      if (metricFields) metricFields.style.display = imp ? 'none' : 'block';
+      if (imperialFields) imperialFields.style.display = imp ? 'block' : 'none';
+    }
+    unitInputs.forEach(function(r){ r.addEventListener('change', syncUnits); });
     form.addEventListener('submit', function(ev){
       ev.preventDefault();
-      var h = parseFloat(document.getElementById('bmi-height').value);
-      var w = parseFloat(document.getElementById('bmi-weight').value);
       var out = document.getElementById('bmi-result');
-      if (!h || !w || h < 50 || h > 250 || w < 20 || w > 400) {
-        out.innerHTML = '<p>Please enter a height between 50–250 cm and a weight between 20–400 kg.</p>';
+      var checked = form.querySelector('input[name="bmi-unit"]:checked');
+      var imp = checked && checked.value === 'imperial';
+      var hCm, wKg;
+      if (imp) {
+        var ft = parseFloat(document.getElementById('bmi-height-ft').value);
+        var inch = parseFloat(document.getElementById('bmi-height-in').value);
+        var lb = parseFloat(document.getElementById('bmi-weight-lb').value);
+        if (isNaN(ft) || isNaN(inch) || isNaN(lb)) { out.innerHTML = '<p>Please enter your height (ft and in) and weight (lb).</p>'; return; }
+        hCm = (ft * 12 + inch) * 2.54; wKg = lb * 0.45359237;
+      } else {
+        hCm = parseFloat(document.getElementById('bmi-height').value);
+        wKg = parseFloat(document.getElementById('bmi-weight').value);
+        if (!hCm || !wKg) { out.innerHTML = '<p>Please enter your height (cm) and weight (kg).</p>'; return; }
+      }
+      if (hCm < 50 || hCm > 250 || wKg < 20 || wKg > 400) {
+        out.innerHTML = '<p>Please enter a height between 50\u2013250 cm and a weight between 20\u2013400 kg.</p>';
         return;
       }
-      var bmi = w / ((h / 100) * (h / 100));
+      var hm = hCm / 100;
+      var bmi = wKg / (hm * hm);
       var cat = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Healthy weight' : bmi < 30 ? 'Overweight' : 'Obesity';
-      var bands = ['Underweight: below 18.5', 'Healthy weight: 18.5 – 24.9', 'Overweight: 25 – 29.9', 'Obesity: 30 and above'];
-      out.innerHTML = '<p>Your BMI</p><b>' + bmi.toFixed(1) + '</b><p>Category: <strong>' + cat + '</strong></p>'
-        + '<div class="band">' + bands.map(function(b){
-            return '<span class="' + (b.split(':')[0] === cat ? 'hit' : '') + '">' + b + '</span>';
-          }).join('') + '</div>'
-        + '<p class="small">General information only — not medical advice. For a plan built around your body and goals, book a free ABROFIT consultation.</p>';
+      var low = 18.5 * hm * hm, high = 24.9 * hm * hm;
+      var diff = bmi < 18.5 ? 'Gain ' + (low - wKg).toFixed(1) + ' kg to reach the healthy range.' : bmi >= 25 ? 'Lose ' + (wKg - high).toFixed(1) + ' kg to reach the healthy range.' : 'You are in the healthy range.';
+      var pct = Math.max(0, Math.min(100, (bmi - 14) / 26 * 100));
+      var genderEl = document.getElementById('bmi-gender');
+      var gender = genderEl ? genderEl.value : '';
+      var waist = parseFloat(document.getElementById('bmi-waist') ? document.getElementById('bmi-waist').value : '');
+      var neck = parseFloat(document.getElementById('bmi-neck') ? document.getElementById('bmi-neck').value : '');
+      var hip = parseFloat(document.getElementById('bmi-hip') ? document.getElementById('bmi-hip').value : '');
+      var hIn = hCm / 2.54;
+      var bf = null;
+      if (gender === 'male' && waist && neck && waist > neck) {
+        bf = 86.010 * Math.log10((waist - neck) / 2.54) - 70.041 * Math.log10(hIn) + 36.76;
+      } else if (gender === 'female' && waist && neck && hip && (waist + hip - neck) > 0) {
+        bf = 163.205 * Math.log10((waist + hip - neck) / 2.54) - 97.684 * Math.log10(hIn) - 78.387;
+      }
+      var bfHtml = '';
+      if (bf !== null && bf > 2 && bf < 60) {
+        bfHtml = '<div><span>Estimated body fat (Navy method)</span><b>' + bf.toFixed(1) + '%</b></div>';
+      } else if (gender) {
+        bfHtml = '<div><span>Estimated body fat</span><b>Add waist + neck (and hip for women) to see an estimate.</b></div>';
+      }
+      var bands = ['Underweight: below 18.5', 'Healthy weight: 18.5 \u2013 24.9', 'Overweight: 25 \u2013 29.9', 'Obesity: 30 and above'];
+      out.innerHTML = '<p>Your BMI</p><b class="big">' + bmi.toFixed(1) + '</b><p>Category: <strong>' + cat + '</strong></p>'
+        + '<div class="gauge"><div class="gauge-marker" style="left:' + pct.toFixed(1) + '%"></div></div>'
+        + '<div class="gauge-labels"><span>Underweight</span><span>Healthy</span><span>Overweight</span><span>Obesity</span></div>'
+        + '<div class="calc-grid"><div><span>Healthy weight range</span><b>' + low.toFixed(1) + ' \u2013 ' + high.toFixed(1) + ' kg</b></div><div><span>To healthy range</span><b>' + diff + '</b></div>' + bfHtml + '</div>'
+        + '<div class="band">' + bands.map(function(b){ return '<span class="' + (b.split(':')[0] === cat ? 'hit' : '') + '">' + b + '</span>'; }).join('') + '</div>'
+        + '<p class="small">General information only \u2014 not medical advice. Body-fat figures are estimates, not medical measurements. For a plan built around your body and goals, book a free ABROFIT consultation.</p>';
     });
   }
 })();
