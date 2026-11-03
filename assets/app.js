@@ -36,17 +36,34 @@
     document.querySelectorAll(".drop.open").forEach(function (d) { d.classList.remove("open"); });
   });
 
+  document.querySelectorAll(".main-nav a").forEach(function (a) {
+    a.addEventListener("click", function () { nav.classList.remove("open"); });
+  });
+
+  var spot = document.querySelector(".spotlight");
+  if (spot && window.matchMedia("(pointer:fine)").matches) {
+    var raf = null;
+    document.addEventListener("mousemove", function (e) {
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        spot.style.left = e.clientX + "px";
+        spot.style.top = e.clientY + "px";
+        raf = null;
+      });
+    });
+  }
+
   // Reveal on scroll.
   var reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
       });
     }, { threshold: 0.12 });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
-    reveals.forEach(function (el) { el.classList.add("visible"); });
+    reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
   // BMI calculator (calculator.html only).

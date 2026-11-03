@@ -82,8 +82,6 @@ body += section("How It Works", "Six Steps. One Coach.", "From first message to 
            ("5. Begin Training", "Start with 30 minutes a day, guided by your coach."),
            ("6. Track Progress", "Daily check-ins and reviews keep the plan moving with you.")])
     + f'<p class="reveal" style="margin-top:24px"><a class="btn" href="how-it-works.html">See How It Works In Detail</a></p>')
-body += section("A Day With ABROFIT", "An Example Day.", "Morning check-in, a 30-minute workout, meals from your plan, and an evening coach review. This is an example — your plan is personalized.",
-    f'<figure class="reveal" style="margin-top:28px"><img loading="lazy" src="assets/images/morning-routine.webp" alt="Illustrative concept image: morning stretch at home in a new city"><figcaption>Illustrative concept image.</figcaption></figure><p class="reveal" style="margin-top:24px"><a class="btn" href="a-day.html">See An Example Day</a></p>')
 body += section("Why It Matters", "Without A System, Fitness Slips.", "Abroad, without a gym nearby and with long work hours, fitness quietly drops off the list. Energy dips, weight creeps up, strength and stamina slip, sleep and stress get harder — and restarting feels harder every month. ABROFIT exists so the system holds when willpower alone does not.",
     f'<p class="reveal" style="margin-top:24px"><a class="btn" href="why-it-matters.html">Why It Matters</a> <a class="btn ghost" href="comparison.html">Compare Your Options</a></p>' + NOTE)
 body += section("Programs", "Start Where You Are.", "A 30-day program to build the habit, a 90-day challenge to go further, and one-to-one coaching for the closest guidance. Every paid program is priced on enquiry.",
@@ -91,8 +89,6 @@ body += section("Programs", "Start Where You Are.", "A 30-day program to build t
            ("90-Day Transformation Challenge", "Ninety days with your coach, designed to build lasting change. Price: On enquiry. Results vary by person and consistency."),
            ("One-to-One Online Coaching", "Your own coach, your own plan, daily guidance. Price: On enquiry.")])
     + f'<p class="reveal" style="margin-top:24px"><a class="btn" href="programs.html">All Programs</a></p>')
-body += section("Questions", "Before You Start.", "Can you join from abroad? Can you train with no gym and only 30 minutes? Who guides you, and what about your food? The answers are short — and the consultation is free.",
-    f'<p class="reveal" style="margin-top:24px"><a class="btn" href="faq.html">Read The FAQ</a></p>')
 body += section("Start Today", "Your First Step Is Free.", "A free consultation, and a one-day free trial to feel how ABROFIT works before you commit to anything.",
     f'<p class="reveal" style="margin-top:24px"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a> <a class="btn ghost" href="{WA_TRIAL}">Try One Day Free</a></p>')
 page("index.html", "ABROFIT — Online Fitness Coaching", "ABROFIT by LARGAMS FITNESS: online fitness coaching for people abroad and people with no time for a gym. 30 minutes a day, a personal coach, a diet plan built for you.",
