@@ -399,10 +399,10 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid var(--g
 /* Button + Instagram fixes (Nov 4 phone sweep): bright-only gradient so black text
    stays readable at every animation frame, solid green fallback under the gradient,
    nav drawer below the full header, Instagram cards that cannot truncate on phones. */
-.btn{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#A8EC4F,var(--green-light),#A8EC4F,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite;border-color:transparent}
-.main-nav a.btn,.main-nav a.btn.small{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#A8EC4F,var(--green-light),#A8EC4F,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite;border-color:transparent}
-.insta-cta{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#A8EC4F,var(--green-light),#A8EC4F,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite}
-.wa-float{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#A8EC4F,var(--green-light),#A8EC4F,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite}
+.btn{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#C6F48A,#EAFDBB,#C6F48A,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite;border-color:transparent}
+.main-nav a.btn,.main-nav a.btn.small{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#C6F48A,#EAFDBB,#C6F48A,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite;border-color:transparent}
+.insta-cta{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#C6F48A,#EAFDBB,#C6F48A,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite}
+.wa-float{background-color:var(--green);background-image:linear-gradient(100deg,var(--green),#C6F48A,#EAFDBB,#C6F48A,var(--green));background-size:200% auto;animation:greenRun 6s linear infinite}
 .insta-brand-abro{width:180px}
 .insta-name,.insta-handle{overflow-wrap:anywhere}
 @media(max-width:1150px){.main-nav{top:100%}}
