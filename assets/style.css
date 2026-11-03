@@ -1,0 +1,122 @@
+/* ABROFIT — premium black theme. Palette ONLY: #090909, #FFFFFF, #BFC3C7 + ABROFIT green #8DE32C / #5FA812 / #C6F48A. No gold anywhere on this site. */
+:root{--black:#090909;--black2:#0f0f0f;--panel:#141414;--panel2:#1c1c1c;--white:#fff;--silver:#BFC3C7;--grey:#8a8f94;--line:#262626;--radius:18px;--green:#8DE32C;--green-dark:#5FA812;--green-light:#C6F48A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--black);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--green-light)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--green);color:#090909;padding:10px 16px;font-weight:800;z-index:200}
+.skip:focus{left:16px;top:16px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Oswald,system-ui,sans-serif;letter-spacing:.02em;line-height:1.08;margin:0 0 14px}
+h2{font-size:clamp(2rem,4.5vw,3.2rem)}
+h3{font-size:1.35rem}
+p{color:#d7d9db}
+.lead{font-size:1.15rem;max-width:720px}
+.kicker{color:var(--green);letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;font-weight:800;margin-bottom:10px}
+.small{font-size:.85rem;color:var(--grey)}
+.section{padding:88px 0}
+.section.tight{padding:56px 0}
+.divider{height:1px;background:var(--line);border:0;margin:0}
+/* Header — pure black so the black-background ABROFIT logo blends with no card edge */
+.site-header{position:sticky;top:0;z-index:100;background:#000;border-bottom:1px solid var(--line)}
+.parent-strip{background:#000;border-bottom:1px solid var(--line);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--silver);padding:8px 0;text-align:center}
+.parent-strip .wrap{padding-top:0;padding-bottom:0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.logo{text-decoration:none;display:flex;align-items:center}
+.site-logo{height:42px;width:190px;object-fit:cover;object-position:center;display:block;background:#000}
+.main-nav{display:flex;align-items:center;gap:22px}
+.main-nav a{color:#e8e9ea;text-decoration:none;font-size:.92rem;font-weight:600;white-space:nowrap}
+.main-nav a:hover,.main-nav a:focus{color:#fff}
+.main-nav a.active{color:var(--green);border-bottom:2px solid var(--green);padding-bottom:4px}
+.drop{position:relative}
+.drop-parent{background:none;border:0;color:#e8e9ea;font-size:.92rem;font-weight:600;cursor:pointer;padding:0;white-space:nowrap}
+.drop-toggle{display:none;background:none;border:0;color:#e8e9ea;cursor:pointer}
+.drop-menu{display:none;position:absolute;top:100%;left:0;background:#111;border:1px solid var(--line);border-radius:12px;padding:8px;min-width:210px;z-index:120}
+.drop-menu a{display:block;padding:9px 12px}
+.drop.open .drop-menu{display:block}
+@media(hover:hover){.drop:hover .drop-menu{display:block}}
+.hamburger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:#fff;font-size:1.4rem;padding:8px 14px;cursor:pointer}
+/* Buttons — green primary, never gold */
+.btn{display:inline-block;background:var(--green);color:#090909;text-decoration:none;font-weight:800;letter-spacing:.04em;padding:14px 24px;border-radius:999px;border:1px solid var(--green);transition:transform .25s ease,background .25s ease,color .25s ease;cursor:pointer}
+.btn:hover,.btn:focus{background:#fff;border-color:#fff;color:#090909;transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:#fff;border-color:#555}
+.btn.ghost:hover{border-color:#fff}
+.btn.small{padding:10px 18px;font-size:.85rem}
+.main-nav a.btn,.main-nav a.btn.small{background:var(--green);border-color:var(--green);color:#090909}
+.main-nav a.btn:hover,.main-nav a.btn:focus{background:#fff;border-color:#fff;color:#090909}
+/* Heroes — balanced, centered, dark overlay so white/green text always reads */
+.page-hero{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center}
+.page-hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45)}
+.page-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,.55),rgba(9,9,9,.85))}
+.hero-inner{position:relative;z-index:2;text-align:center;padding:90px 0}
+.hero-title{font-size:clamp(3rem,9vw,6.5rem);overflow-wrap:break-word}
+.hero-center .lead{margin:0 auto}
+/* Animated running green gradient on highlighted words only */
+.green-word{background:linear-gradient(90deg,var(--green-dark),var(--green),var(--green-light),var(--green),var(--green-dark));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:greenRun 6s linear infinite}
+@keyframes greenRun{to{background-position:200% center}}
+/* Cards / grids — aligned, equal rhythm */
+.grid{display:grid;gap:20px}
+.grid.two{grid-template-columns:1fr 1fr}
+.grid.three{grid-template-columns:1fr 1fr 1fr}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.card-body{padding:26px}
+.card-body h3{margin-top:0}
+.card-body p:last-child{margin-bottom:0}
+.card img{width:100%;height:auto;display:block}
+figure{margin:0}
+figcaption{font-size:.85rem;color:var(--grey);margin-top:10px}
+details{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:12px;background:var(--panel)}
+details summary{cursor:pointer;font-weight:700;font-family:Oswald,system-ui,sans-serif;font-size:1.1rem}
+details p{margin:10px 0 0}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{border-bottom:1px solid var(--line);padding:12px 10px;text-align:left;vertical-align:top}
+th{font-family:Oswald,system-ui,sans-serif;letter-spacing:.04em}
+td:first-child{white-space:nowrap}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:none}
+/* Footer — pure black, parent company clearly shown */
+footer{border-top:1px solid var(--line);padding:60px 0 30px;background:#000}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1.2fr;gap:28px;align-items:start}
+footer h4{margin:0 0 14px;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem;color:var(--silver)}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin-bottom:8px}
+footer a{color:#d7d9db;text-decoration:none}
+footer a:hover{color:#fff}
+.footer-logo{height:42px;width:190px;object-fit:cover;object-position:center;display:block;background:#000;margin-bottom:14px}
+.parent-box{border:1px solid var(--line);border-radius:14px;padding:18px;background:#0d0d0d}
+.parent-logo{height:40px;width:auto;display:block;margin-bottom:10px}
+.foot-bottom{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;font-size:.85rem;color:var(--grey)}
+.foot-bottom p{color:var(--grey)}
+.wa-float{position:fixed;right:20px;bottom:20px;background:var(--green);color:#090909;font-weight:800;text-decoration:none;padding:14px 22px;border-radius:999px;z-index:150;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.wa-float:hover{background:#fff}
+/* Mobile readability + header/footer consistency */
+@media(max-width:1150px){
+  .hamburger{display:block}
+  .main-nav{display:none;position:absolute;top:100%;left:0;right:0;background:#000;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:16px 24px 24px;gap:14px}
+  .main-nav.open{display:flex}
+  .drop-menu{position:static;display:none;border:0;padding:0 0 0 14px;background:transparent}
+  .drop.open .drop-menu{display:block}
+  .drop-toggle{display:inline-block}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .grid.two,.grid.three{grid-template-columns:1fr}
+  .page-hero{min-height:440px}
+  .hero-inner{padding:70px 0}
+}
+@media(max-width:560px){
+  .section{padding:60px 0}
+  .section.tight{padding:44px 0}
+  .site-logo,.footer-logo{width:160px;height:36px}
+  .foot-grid{grid-template-columns:1fr}
+  .wrap{padding:0 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .green-word{animation:none}
+  .reveal{transition:none;opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
