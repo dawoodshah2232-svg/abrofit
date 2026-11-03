@@ -345,3 +345,11 @@ a:focus-visible,button:focus-visible,.hamburger:focus-visible,.drop-toggle:focus
 .footer-logo{height:80px;width:260px;object-fit:cover;object-position:center}
 .parent-logo{height:40px;width:auto;display:block;margin-bottom:10px}
 @media(max-width:560px){.site-logo{height:48px;width:180px}.footer-logo{height:56px;width:200px}}
+
+/* Logo blend fix: both logos are black-background files (byte-identical, never edited).
+   The Instagram cards used a grey gradient, so the logos' black background showed as a
+   sharp rectangle. Pure-black cards + lighten blending make the black pixels disappear
+   into the background, exactly like the header/footer — text only, no box. */
+.insta-card{background:#000}
+.insta-brand,.insta-brand-abro{background:transparent;mix-blend-mode:lighten}
+.parent-logo{mix-blend-mode:lighten}
