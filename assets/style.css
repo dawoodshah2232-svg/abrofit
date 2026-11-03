@@ -418,3 +418,31 @@ form input:focus,form select:focus,form textarea:focus{outline:2px solid var(--g
 .direct-line{display:flex;align-items:flex-start;gap:12px}
 .direct-ic{flex:0 0 auto;width:26px;height:26px;margin-top:1px;color:var(--green)}
 .direct-ic svg{width:100%;height:100%;display:block}
+
+/* Stepper, quiz, timer, photo credit (Nov 4 functions upgrade) */
+.stepper-progress{height:6px;background:#222;border-radius:99px;overflow:hidden;margin:0 0 18px}
+.stepper-fill{height:100%;width:16.66%;background:linear-gradient(90deg,var(--green),#C6F48A);transition:width .4s ease}
+.stepper-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.stepper-tab{background:#111;border:1px solid #333;color:#fff;border-radius:12px;padding:10px 14px;cursor:pointer;font:inherit;text-align:left}
+.stepper-tab b{color:var(--green);margin-right:8px}
+.stepper-tab[aria-selected="true"]{border-color:var(--green);background:#16210a}
+.stepper-panel{display:none}
+.stepper-panel.active{display:grid;grid-template-columns:1.05fr .95fr;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel)}
+.stepper-panel .media{overflow:hidden;min-height:320px}
+.stepper-panel .media img{width:100%;height:100%;object-fit:cover}
+.stepper-body{padding:36px}
+.stepper-kicker{color:var(--green);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+.stepper-nav{display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap}
+.stepper-count{color:var(--silver);font-weight:700}
+.photo-credit{font-size:.75rem;color:var(--silver);margin-top:10px}
+.quiz-q{margin-bottom:16px}
+.quiz-q p{font-weight:700;margin-bottom:6px}
+.quiz-q label{display:block;padding:10px 12px;border:1px solid #333;border-radius:10px;margin:6px 0;cursor:pointer}
+.quiz-q label input{margin-right:8px}
+.quiz-result{border:1px solid var(--green);border-radius:12px;padding:20px;margin-top:18px}
+.quiz-note{color:var(--silver);font-size:.9rem}
+.faq-search input{max-width:520px}
+.timer{text-align:center}
+.timer-display{font-family:Oswald,system-ui,sans-serif;font-size:clamp(3rem,10vw,5rem);font-weight:700;margin:8px 0}
+.timer-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@media(max-width:900px){.stepper-panel.active{grid-template-columns:1fr}.stepper-panel .media{min-height:240px}.stepper-body{padding:24px}}

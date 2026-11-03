@@ -176,3 +176,32 @@
   // Native Escape closes the dialog; returning focus to the figure that opened it
   dlg.addEventListener('close', function(){ if (lastFocus) lastFocus.focus(); });
 })();
+
+/* How It Works stepper, Program Finder quiz, FAQ search, session timer — all client-side, nothing saved. */
+(function(){
+  var st=document.getElementById('hiw-stepper');
+  if(st){var tabs=st.querySelectorAll('.stepper-tab'),panels=st.querySelectorAll('.stepper-panel'),fill=document.getElementById('hiw-fill'),count=document.getElementById('hiw-count'),prev=document.getElementById('hiw-prev'),next=document.getElementById('hiw-next'),cur=0;
+  function setStep(i){cur=i;tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i?'true':'false');});panels.forEach(function(p,j){p.classList.toggle('active',j===i);});if(fill)fill.style.width=((i+1)/panels.length*100)+'%';if(count)count.textContent='Step '+(i+1)+' of '+panels.length;if(prev)prev.disabled=(i===0);if(next)next.disabled=(i===panels.length-1);}
+  tabs.forEach(function(t){t.addEventListener('click',function(){setStep(+t.getAttribute('data-step'));});});
+  if(prev)prev.addEventListener('click',function(){if(cur>0)setStep(cur-1);});
+  if(next)next.addEventListener('click',function(){if(cur<panels.length-1)setStep(cur+1);});
+  setStep(0);}
+  var qz=document.getElementById('quiz');
+  if(qz){var go=document.getElementById('quiz-go'),res=document.getElementById('quiz-result'),warn=document.getElementById('quiz-warn');
+  var progs={trial:{t:'One-Day Free Trial',w:'Try one full day free first, then decide with your coach.',m:'I would like to try the one-day free trial.'},personal:{t:'One-to-One Online Coaching',w:'Your own coach and your own plan, with daily personal guidance.',m:'I would like to know more about your One-to-One Online Coaching.'},change:{t:'90-Day Transformation Challenge',w:'A full 90 days of structured coaching for lasting change.',m:'I would like to know more about your 90-Day Transformation Challenge.'},habit:{t:'30-Day Online Fitness Program',w:'Thirty days to build the daily habit, with guided training and nutrition.',m:'I would like to know more about your 30-Day Online Fitness Program.'}};
+  function val(n){var c=qz.querySelector('input[name="'+n+'"]:checked');return c?c.value:null;}
+  function lab(n){var c=qz.querySelector('input[name="'+n+'"]:checked');if(!c)return '';var l=c.closest('label');return l?l.textContent.trim():c.value;}
+  go.addEventListener('click',function(){var g=val('q-goal'),t=val('q-time'),e=val('q-exp');if(!g||!t||!e){warn.hidden=false;res.hidden=true;return;}warn.hidden=true;var p=progs[g]||progs.habit;document.getElementById('quiz-title').textContent='Suggested for you: '+p.t;document.getElementById('quiz-why').textContent=p.w;var cfg=window.ABROFIT_CONFIG||{};var base=cfg.whatsappUrl||'https://wa.me/918137008663';var msg='Hi ABROFIT, the Program Finder suggested '+p.t+' for me. '+p.m+' (Time: '+lab('q-time')+'; Experience: '+lab('q-exp')+'.)';document.getElementById('quiz-wa').href=base+'?text='+encodeURIComponent(msg);res.hidden=false;});}
+  var fs=document.getElementById('faq-search');
+  if(fs){var none=document.getElementById('faq-none');fs.addEventListener('input',function(){var q=fs.value.trim().toLowerCase(),shown=0;document.querySelectorAll('details').forEach(function(d){var txt=((d.querySelector('summary')?d.querySelector('summary').textContent:'')+' '+(d.textContent||''));var ok=!q||txt.toLowerCase().indexOf(q)!==-1;d.style.display=ok?'':'none';if(ok)shown++;});if(none)none.hidden=(shown>0);});}
+  var td=document.getElementById('timer-display');
+  if(td){var mins=document.getElementById('timer-mins'),start=document.getElementById('timer-start'),pause=document.getElementById('timer-pause'),reset=document.getElementById('timer-reset'),done=document.getElementById('timer-done'),left=0,iv=null,running=false;
+  function fmt(s){var m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0':'')+ss;}
+  function setLeft(){left=parseInt(mins.value,10)*60;td.textContent=fmt(left);done.hidden=true;}
+  function tick(){if(left<=0){clearInterval(iv);iv=null;running=false;td.textContent='0:00';done.hidden=false;return;}left--;td.textContent=fmt(left);if(left<=0){clearInterval(iv);iv=null;running=false;done.hidden=false;}}
+  start.addEventListener('click',function(){if(running)return;if(left<=0)setLeft();running=true;done.hidden=true;iv=setInterval(tick,1000);});
+  pause.addEventListener('click',function(){if(iv)clearInterval(iv);iv=null;running=false;});
+  reset.addEventListener('click',function(){if(iv)clearInterval(iv);iv=null;running=false;setLeft();});
+  mins.addEventListener('change',function(){if(iv)clearInterval(iv);iv=null;running=false;setLeft();});
+  setLeft();}
+})();
