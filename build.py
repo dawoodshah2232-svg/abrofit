@@ -39,7 +39,7 @@ def nav_html(active):
     out.append(f'<a class="btn small" href="{WA_JOIN}">Free Consultation</a>')
     return "".join(out)
 
-def head(title, desc, fname, ogimg="assets/images/hero.webp"):
+def head(title, desc, fname, ogimg="assets/images/hero.jpg"):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} | ABROFIT by LARGAMS FITNESS</title><meta name="description" content="{desc}">
 <link rel="canonical" href="{PAGES}{fname}"><meta property="og:title" content="{title} — ABROFIT"><meta property="og:description" content="{desc}"><meta property="og:type" content="website"><meta property="og:url" content="{PAGES}{fname}"><meta property="og:image" content="{PAGES}{ogimg}">
@@ -54,17 +54,17 @@ FOOTER = f"""<footer><div class="wrap"><div class="foot-grid"><div><img class="f
 <a class="wa-float" href="{WA_JOIN}"><span>WhatsApp Us</span></a>
 <script src="assets/config.js"></script><script src="assets/app.js"></script></body></html>"""
 
-def page(fname, title, desc, hero, body, ogimg="assets/images/hero.webp"):
+def page(fname, title, desc, hero, body, ogimg="assets/images/hero.jpg"):
     html = head(title, desc, fname, ogimg) + header(fname) + "<main id=\"main\">" + hero + body + "</main>" + FOOTER
     pathlib.Path(fname).write_text(html)
     print("wrote", fname, len(html))
 
 def hero_index():
-    return f"""<section class="hero"><img class="bg" src="assets/images/hero.webp" alt="Illustrative concept image: training at home abroad in the evening"><div class="wrap hero-inner"><p class="kicker">ABROFIT &mdash; by LARGAMS FITNESS</p><h1 class="hero-title">Fit Abroad. <span class="green-word">30 Minutes</span> A Day.</h1><p class="lead">Abroad? No gym? No time? No problem. A personal coach, a personalized plan, and a diet built for you &mdash; online, wherever you live.</p><div class="btns"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a><a class="btn ghost" href="programs.html">See Programs &rarr;</a></div></div></section>"""
+    return f"""<section class="hero"><img class="bg" src="assets/images/hero.jpg" alt="training at home abroad in the evening"><div class="wrap hero-inner"><p class="kicker">ABROFIT &mdash; by LARGAMS FITNESS</p><h1 class="hero-title">Fit Abroad. <span class="green-word">30 Minutes</span> A Day.</h1><p class="lead">Abroad? No gym? No time? No problem. A personal coach, a personalized plan, and a diet built for you &mdash; online, wherever you live.</p><div class="btns"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a><a class="btn ghost" href="programs.html">See Programs &rarr;</a></div></div></section>"""
 
 def page_hero(kicker, title, lead, img, cta=True):
     btns = f'<div class="btns"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a><a class="btn ghost" href="programs.html">See Programs &rarr;</a></div>' if cta else ""
-    return f"""<section class="page-hero"><img class="bg" src="{img}" alt="Illustrative concept image"><div class="wrap hero-inner"><p class="kicker">{kicker}</p><h1 class="hero-title">{title}</h1><p class="lead">{lead}</p>{btns}</div></section>"""
+    return f"""<section class="page-hero"><img class="bg" src="{img}" alt="Fitness training photo"><div class="wrap hero-inner"><p class="kicker">{kicker}</p><h1 class="hero-title">{title}</h1><p class="lead">{lead}</p>{btns}</div></section>"""
 
 def section(kicker, h2, lead, inner="", tight=False):
     cls = "section tight" if tight else "section"
@@ -74,10 +74,10 @@ BARBELL = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 CHECK = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>'
 
 def cards(items, icon=BARBELL):
-    IMG = {"30-Day Program": "assets/images/morning-routine.webp", "90-Day Transformation Challenge": "assets/images/hero.webp", "One-to-One Online Coaching": "assets/images/coach-call.webp", "Free Consultation": "assets/images/consultation.webp", "One-Day Free Trial": "assets/images/trial.webp", "Custom Diet Plans": "assets/images/healthy-meal.webp"}
+    IMG = {"30-Day Program": "assets/images/morning-routine.jpg", "90-Day Transformation Challenge": "assets/images/hero.jpg", "One-to-One Online Coaching": "assets/images/coach-call.jpg", "Free Consultation": "assets/images/consultation.jpg", "One-Day Free Trial": "assets/images/trial.jpg", "Custom Diet Plans": "assets/images/healthy-meal.jpg"}
     def one(item):
         h, pp = item[0], item[1]
-        media = f'<div class="media"><img loading="lazy" src="{IMG[h]}" alt="Illustrative concept image"></div>' if h in IMG else ""
+        media = f'<div class="media"><img loading="lazy" src="{IMG[h]}" alt="Fitness training photo"></div>' if h in IMG else ""
         return f'<div class="card reveal" style="--d:.08s">{media}<div class="card-body"><h3>{icon} {h}</h3><p>{pp}</p></div></div>'
     inner = "".join(one(item) for item in items)
     return f'<div class="grid three" style="margin-top:28px">{inner}</div>'
@@ -121,7 +121,7 @@ body += section("Pick Your Program.", "Start Where You Are.",
     + f'<p class="reveal" style="margin-top:24px"><a class="btn" href="programs.html">All Programs</a></p>')
 body += section("Training At Your Home, Abroad.", "No Gym Needed.",
     "Train at home, in your room, or wherever you are &mdash; your plan is built for your space, your schedule, and your life abroad.",
-    split("assets/images/coach-call.webp", "Illustrative concept image: online coach on a video call with a client training at home", "Your Coach, On Screen, Every Day.", "Your coach guides the session, reviews your day, and keeps the plan moving with you &mdash; no commute, no waiting for equipment, no lost hour around the workout.", "Start With A Free Consultation", WA_JOIN))
+    split("assets/images/coach-call.jpg", "online coach on a video call with a client training at home", "Your Coach, On Screen, Every Day.", "Your coach guides the session, reviews your day, and keeps the plan moving with you &mdash; no commute, no waiting for equipment, no lost hour around the workout.", "Start With A Free Consultation", WA_JOIN))
 body += section("Follow Us", "On Instagram",
     "Follow the official accounts for training, updates and announcements. We do not show a live embedded feed &mdash; Instagram embedding requires official authorisation &mdash; so these links take you directly to the profiles.",
     insta(), tight=True)
@@ -137,20 +137,20 @@ steps = [("01", "Contact", "Message ABROFIT on WhatsApp and say you want to star
 steps_html = "".join(f'<div class="step reveal"><b class="num">{n}</b><h3>{h}</h3><p>{p}</p></div>' for n, h, p in steps)
 body = section("How It Works", "Six Steps. One Coach.", "From first message to daily progress &mdash; the same six steps for every client.", f'<div class="steps" style="margin-top:28px">{steps_html}</div>')
 body += section("Start Today", "Start Your Fitness Journey Today.", "A free consultation, and a one-day free trial to feel how ABROFIT works before you commit to anything.", f'<p class="reveal" style="margin-top:24px"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a> <a class="btn ghost" href="{WA_TRIAL}">Try One Day Free</a></p>' + NOTE)
-page("how-it-works.html", "How It Works — ABROFIT", "ABROFIT in six steps: contact, free consultation, goal assessment, personalized plan, begin training, track progress.", page_hero("How It Works", "Six Steps. One Coach.", "From first message to daily progress.", "assets/images/coach-call.webp"), body, "assets/images/coach-call.webp")
+page("how-it-works.html", "How It Works — ABROFIT", "ABROFIT in six steps: contact, free consultation, goal assessment, personalized plan, begin training, track progress.", page_hero("How It Works", "Six Steps. One Coach.", "From first message to daily progress.", "assets/images/coach-call.jpg"), body, "assets/images/coach-call.jpg")
 
 # ---------------- PROGRAMS ----------------
 def program_card(title, dur, ben, inc, aud, price, wa, wa_label="Enquire", img=None):
-    media = f'<div class="media"><img loading="lazy" src="{img}" alt="Illustrative concept image"></div>' if img else ""
+    media = f'<div class="media"><img loading="lazy" src="{img}" alt="Fitness training photo"></div>' if img else ""
     return f'<div class="card price-card reveal">{media}<div class="card-body"><h3>{title}</h3><p class="price">Price: {price}</p><p><strong>Duration:</strong> {dur}</p><p><strong>Benefits:</strong> {ben}</p><p><strong>What&rsquo;s included:</strong> {inc}</p><p><strong>Suitable for:</strong> {aud}</p><p><a class="btn" href="{wa}">{wa_label}</a></p></div></div>'
 body = section("ABROFIT Programs", "Choose Your Program.", "Every paid program is priced on enquiry &mdash; nothing is invented. Free consultation and one-day trial are the only free items.",
     f'<div class="grid three" style="margin-top:28px">'
-    + program_card("30-Day Online Fitness Program", "30 days", "Build the daily habit with guided training and nutrition.", "Daily check-ins, personalized workouts, customized diet plan.", "Anyone starting or restarting fitness, abroad or short on time.", "On enquiry", WA_30, img="assets/images/morning-routine.webp")
-    + program_card("90-Day Transformation Challenge", "90 days", "A full 90 days with your coach, designed to build lasting change.", "Daily guidance, personalized workouts, customized diet plan, progress reviews.", "People ready for a longer, structured commitment.", "On enquiry", WA_90, img="assets/images/hero.webp")
-    + program_card("One-to-One Online Coaching", "Ongoing, on enquiry", "The closest guidance &mdash; your own coach and your own plan.", "Personal coach, personalized plan, diet plan, daily check-ins.", "Anyone who wants individual attention.", "On enquiry", WA_ABRO, img="assets/images/coach-call.webp")
-    + program_card("Free Consultation", "One conversation", "Understand your goal, time and starting point &mdash; free.", "A free conversation with ABROFIT about your goal.", "Everyone, before starting.", "Free", WA_JOIN, img="assets/images/consultation.webp")
-    + program_card("One-Day Free Trial", "One day", "Feel how ABROFIT works before you commit.", "One day of guided training under the program.", "Everyone, before starting.", "Free", WA_TRIAL, img="assets/images/trial.webp")
-    + program_card("Custom Diet Plans", "With any program", "Eating habits become part of the plan, not an afterthought.", "A diet plan built around your routine and the food around you.", "Anyone whose eating habits need structure.", "On enquiry", WA_ABRO, img="assets/images/healthy-meal.webp")
+    + program_card("30-Day Online Fitness Program", "30 days", "Build the daily habit with guided training and nutrition.", "Daily check-ins, personalized workouts, customized diet plan.", "Anyone starting or restarting fitness, abroad or short on time.", "On enquiry", WA_30, img="assets/images/morning-routine.jpg")
+    + program_card("90-Day Transformation Challenge", "90 days", "A full 90 days with your coach, designed to build lasting change.", "Daily guidance, personalized workouts, customized diet plan, progress reviews.", "People ready for a longer, structured commitment.", "On enquiry", WA_90, img="assets/images/hero.jpg")
+    + program_card("One-to-One Online Coaching", "Ongoing, on enquiry", "The closest guidance &mdash; your own coach and your own plan.", "Personal coach, personalized plan, diet plan, daily check-ins.", "Anyone who wants individual attention.", "On enquiry", WA_ABRO, img="assets/images/coach-call.jpg")
+    + program_card("Free Consultation", "One conversation", "Understand your goal, time and starting point &mdash; free.", "A free conversation with ABROFIT about your goal.", "Everyone, before starting.", "Free", WA_JOIN, img="assets/images/consultation.jpg")
+    + program_card("One-Day Free Trial", "One day", "Feel how ABROFIT works before you commit.", "One day of guided training under the program.", "Everyone, before starting.", "Free", WA_TRIAL, img="assets/images/trial.jpg")
+    + program_card("Custom Diet Plans", "With any program", "Eating habits become part of the plan, not an afterthought.", "A diet plan built around your routine and the food around you.", "Anyone whose eating habits need structure.", "On enquiry", WA_ABRO, img="assets/images/healthy-meal.jpg")
     + '</div>')
 body += section("All ABROFIT Services", "Everything Included.",
     "The services below are the real ABROFIT offering from the brief. Prices, where applicable, are on enquiry &mdash; none are invented.",
@@ -162,7 +162,7 @@ body += section("All ABROFIT Services", "Everything Included.",
            ("Muscle Building Programs", "Progressive training built for your goal."),
            ("Body Transformation Programs", "Longer programs with daily accountability. Results vary by person and consistency."),
            ("Guidance &amp; Accountability", "Daily check-ins so the plan holds when motivation alone does not.")], icon=CHECK))
-page("programs.html", "Programs — ABROFIT", "ABROFIT programs: 30-day, 90-day, one-to-one coaching, free consultation and one-day free trial. Prices on enquiry.", page_hero("Programs", "Choose Your Program.", "Online coaching, built around 30 minutes a day.", "assets/images/morning-routine.webp"), body, "assets/images/morning-routine.webp")
+page("programs.html", "Programs — ABROFIT", "ABROFIT programs: 30-day, 90-day, one-to-one coaching, free consultation and one-day free trial. Prices on enquiry.", page_hero("Programs", "Choose Your Program.", "Online coaching, built around 30 minutes a day.", "assets/images/morning-routine.jpg"), body, "assets/images/morning-routine.jpg")
 
 # ---------------- WHY IT MATTERS ----------------
 body = section("Why It Matters", "Without A System, Fitness Slips.",
@@ -174,8 +174,8 @@ body = section("Why It Matters", "Without A System, Fitness Slips.",
            ("No One Watching", "With no coach and no check-ins, skipping a day becomes skipping a month.")], icon=CHECK))
 body += section("The Cost Of Doing Nothing", "Small Slips, Over Time.",
     "In general wellness terms: energy dips, weight creeps up, strength and stamina slip, sleep and stress get harder &mdash; and restarting feels harder every month. This is general information, not a medical claim about any person.",
-    split("assets/images/hero.webp", "Illustrative concept image: training at home abroad", "A System Holds When Willpower Does Not.", "Thirty minutes a day, a coach who checks in, and a plan that fits your life &mdash; that is the system ABROFIT gives you, so fitness does not depend on motivation alone.", "Book A Free Consultation", WA_JOIN) + NOTE)
-page("why-it-matters.html", "Why It Matters — ABROFIT", "Why fitness fails abroad without a system, and what ABROFIT changes: 30 minutes a day, a coach, a plan, a diet.", page_hero("Why It Matters", "Without A System, Fitness Slips.", "Abroad, with no time and no gym nearby, fitness needs a system.", "assets/images/hero.webp"), body)
+    split("assets/images/hero.jpg", "training at home abroad", "A System Holds When Willpower Does Not.", "Thirty minutes a day, a coach who checks in, and a plan that fits your life &mdash; that is the system ABROFIT gives you, so fitness does not depend on motivation alone.", "Book A Free Consultation", WA_JOIN) + NOTE)
+page("why-it-matters.html", "Why It Matters — ABROFIT", "Why fitness fails abroad without a system, and what ABROFIT changes: 30 minutes a day, a coach, a plan, a diet.", page_hero("Why It Matters", "Without A System, Fitness Slips.", "Abroad, with no time and no gym nearby, fitness needs a system.", "assets/images/hero.jpg"), body)
 
 # ---------------- COMPARISON ----------------
 rows = [("Personalized plan", "Yes", "No — you plan it yourself", "No", "No — generic videos"),
@@ -189,7 +189,7 @@ trs = "".join(f"<tr><td><strong>{a}</strong></td><td>{b}</td><td>{c}</td><td>{d}
 body = section("Comparison", "Compare Honestly.",
     "Features only &mdash; no invented competitor prices or claims. Other services vary; this table compares what each option typically includes as described here.",
     f'<div class="table-wrap reveal" style="margin-top:28px"><table><thead><tr><th>Feature</th><th>ABROFIT</th><th>Gym Alone</th><th>No Plan</th><th>Random Online Videos</th></tr></thead><tbody>{trs}</tbody></table></div>' + CTA + NOTE)
-page("comparison.html", "Comparison — ABROFIT", "ABROFIT vs gym alone vs no plan vs random online videos: features only, no invented prices.", page_hero("Comparison", "Compare Honestly.", "What each option actually includes &mdash; features only.", "assets/images/morning-routine.webp"), body, "assets/images/morning-routine.webp")
+page("comparison.html", "Comparison — ABROFIT", "ABROFIT vs gym alone vs no plan vs random online videos: features only, no invented prices.", page_hero("Comparison", "Compare Honestly.", "What each option actually includes &mdash; features only.", "assets/images/morning-routine.jpg"), body, "assets/images/morning-routine.jpg")
 
 # ---------------- VALUE ----------------
 body = section("Value", "What You Get, In One Place.",
@@ -200,8 +200,8 @@ body = section("Value", "What You Get, In One Place.",
            ("Daily Check-Ins", "Accountability every day, so the plan keeps moving.")], icon=CHECK))
 body += section("Time Saved", "No Commute. No Waiting.",
     "No travel to a gym, no waiting for equipment, no lost hour around the workout. Thirty minutes, at home, done.",
-    split("assets/images/healthy-meal.webp", "Illustrative concept image: healthy meal prep", "Your Meals, Planned Too.", "A diet plan built around your routine and the food around you &mdash; so eating supports training instead of undoing it.", "See Programs", "programs.html") + CTA + NOTE)
-page("value.html", "Value — ABROFIT", "ABROFIT value: coach, plan, diet and daily check-ins in one place, 30 minutes a day, no commute.", page_hero("Value", "What You Get, In One Place.", "Coach, plan, diet and daily check-ins &mdash; together.", "assets/images/healthy-meal.webp"), body, "assets/images/healthy-meal.webp")
+    split("assets/images/healthy-meal.jpg", "healthy meal prep", "Your Meals, Planned Too.", "A diet plan built around your routine and the food around you &mdash; so eating supports training instead of undoing it.", "See Programs", "programs.html") + CTA + NOTE)
+page("value.html", "Value — ABROFIT", "ABROFIT value: coach, plan, diet and daily check-ins in one place, 30 minutes a day, no commute.", page_hero("Value", "What You Get, In One Place.", "Coach, plan, diet and daily check-ins &mdash; together.", "assets/images/healthy-meal.jpg"), body, "assets/images/healthy-meal.jpg")
 
 # ---------------- A DAY ----------------
 day = [("01", "Morning Check-In", "Your coach checks in. The day's plan is clear before work starts."),
@@ -215,8 +215,8 @@ body = section("A Day With ABROFIT", "An Example Day.",
     f'<div class="steps" style="margin-top:28px">{day_html}</div>')
 body += section("Your Morning", "Start The Day Right.",
     "A morning routine that fits your life abroad &mdash; stretch, check in, train, and get on with the day.",
-    split("assets/images/morning-routine.webp", "Illustrative concept image: morning stretch at home", "Thirty Minutes, Then On With Your Day.", "The workout is short on purpose: it is the part most people can actually keep, every day.", "Book A Free Consultation", WA_JOIN))
-page("a-day.html", "A Day With ABROFIT", "An example day with ABROFIT: morning check-in, 30-minute workout, meals per plan, evening coach review.", page_hero("A Day With ABROFIT", "An Example Day.", "Morning check-in to evening review &mdash; your plan, personalized.", "assets/images/morning-routine.webp"), body, "assets/images/morning-routine.webp")
+    split("assets/images/morning-routine.jpg", "morning stretch at home", "Thirty Minutes, Then On With Your Day.", "The workout is short on purpose: it is the part most people can actually keep, every day.", "Book A Free Consultation", WA_JOIN))
+page("a-day.html", "A Day With ABROFIT", "An example day with ABROFIT: morning check-in, 30-minute workout, meals per plan, evening coach review.", page_hero("A Day With ABROFIT", "An Example Day.", "Morning check-in to evening review &mdash; your plan, personalized.", "assets/images/morning-routine.jpg"), body, "assets/images/morning-routine.jpg")
 
 # ---------------- FAQ ----------------
 FAQS = [("Can I join ABROFIT from abroad?", "Yes &mdash; ABROFIT is designed for people worldwide, whether in India or anywhere across the globe, with no need for a physical gym."),
@@ -232,7 +232,7 @@ faqs_html = "".join(f'<details class="reveal"><summary>{q}</summary><p>{a}</p></
 body = section("FAQ", "Questions, Answered.",
     "Where a detail is not yet confirmed, the answer says so and points to WhatsApp &mdash; nothing is invented. Questions about the physical gym are answered on the LARGAMS FITNESS site.",
     faqs_html + CTA + NOTE)
-page("faq.html", "FAQ — ABROFIT", "ABROFIT FAQ: abroad, no gym, 30 minutes, coach, diet, equipment, cost, 30-day program.", page_hero("FAQ", "Questions, Answered.", "Abroad, no gym, 30 minutes &mdash; answered honestly.", "assets/images/coach-call.webp"), body, "assets/images/coach-call.webp")
+page("faq.html", "FAQ — ABROFIT", "ABROFIT FAQ: abroad, no gym, 30 minutes, coach, diet, equipment, cost, 30-day program.", page_hero("FAQ", "Questions, Answered.", "Abroad, no gym, 30 minutes &mdash; answered honestly.", "assets/images/coach-call.jpg"), body, "assets/images/coach-call.jpg")
 
 # ---------------- CALCULATOR ----------------
 body = section("Tools — BMI Calculator", "Know Your Starting Point.",
@@ -245,7 +245,7 @@ body = section("Tools — BMI Calculator", "Know Your Starting Point.",
 body += section("What BMI Does — And Doesn't — Tell You", "A Starting Point, Not A Verdict.",
     "BMI is a simple screening number. It does not measure muscle, body fat, fitness or health on its own &mdash; a muscular athlete and a sedentary person can share the same BMI. Use it as a starting point, then talk to a coach about training, nutrition, sleep and habits. That is what the free ABROFIT consultation is for.",
     CTA + '<p class="small reveal" style="margin-top:16px">Disclaimer: this calculator gives general information only and is not medical advice. If you have a health condition, speak to a qualified professional before starting a new training or diet plan.</p>')
-page("calculator.html", "BMI Calculator — ABROFIT", "ABROFIT BMI calculator: know your starting point, honestly explained, then a plan built around you.", page_hero("Tools — BMI Calculator", "Know Your Starting Point.", "One number, honestly explained.", "assets/images/hero.webp", cta=False), body)
+page("calculator.html", "BMI Calculator — ABROFIT", "ABROFIT BMI calculator: know your starting point, honestly explained, then a plan built around you.", page_hero("Tools — BMI Calculator", "Know Your Starting Point.", "One number, honestly explained.", "assets/images/hero.jpg", cta=False), body)
 
 # ---------------- ABOUT ----------------
 body = section("Brand Story", "ABROFIT — Fitness Without Boundaries.",
@@ -261,7 +261,7 @@ body += section("Parent Company", "A Product Of LARGAMS FITNESS.",
     f'<div class="card reveal" style="margin-top:28px"><div class="card-body"><img class="parent-logo" src="assets/logo-largams-clear.png" alt="LARGAMS FITNESS logo"><p>LARGAMS FITNESS &mdash; the main company. ABROFIT is its official online fitness division. <a href="{LARG_SITE}">Visit the LARGAMS FITNESS website &rarr;</a></p></div></div>')
 body += section("Future Goals", "Growing, Step By Step.",
     "Future goals &mdash; including additional programs and online services &mdash; are editable placeholders to be confirmed by the brand. Future features (payments, logins, dashboards, booking, store) are Phase 2 and are not presented as live anywhere on this site.")
-page("about.html", "About — ABROFIT", "About ABROFIT: the online fitness division of LARGAMS FITNESS, its story, vision, mission and parent company.", page_hero("About ABROFIT", "Fitness Without Boundaries.", "Professional coaching, personalized plans, customized nutrition &mdash; wherever you are.", "assets/images/coach-call.webp"), body, "assets/images/coach-call.webp")
+page("about.html", "About — ABROFIT", "About ABROFIT: the online fitness division of LARGAMS FITNESS, its story, vision, mission and parent company.", page_hero("About ABROFIT", "Fitness Without Boundaries.", "Professional coaching, personalized plans, customized nutrition &mdash; wherever you are.", "assets/images/coach-call.jpg"), body, "assets/images/coach-call.jpg")
 
 # ---------------- CONTACT ----------------
 body = section("Contact", "Start The Conversation.",
@@ -281,6 +281,6 @@ body = section("Contact", "Start The Conversation.",
 <p><strong>Location:</strong> Online, worldwide &mdash; no physical gym visit needed for ABROFIT coaching. For the physical gym, see <a href="{LARG_SITE}">LARGAMS FITNESS</a>.</p>
 <p><strong>Hours / email:</strong> To be confirmed &mdash; please ask on WhatsApp.</p>
 <p><a class="btn" href="{WA_TRIAL}">Try One Day Free</a></p></div></div>""")
-page("contact.html", "Contact — ABROFIT", "Contact ABROFIT: enquiry form via WhatsApp, Instagram, and free consultation for online fitness coaching.", page_hero("Contact", "Start The Conversation.", "Abroad, no time, no gym &mdash; tell us where you are, and we will reply.", "assets/images/hero.webp"), body)
+page("contact.html", "Contact — ABROFIT", "Contact ABROFIT: enquiry form via WhatsApp, Instagram, and free consultation for online fitness coaching.", page_hero("Contact", "Start The Conversation.", "Abroad, no time, no gym &mdash; tell us where you are, and we will reply.", "assets/images/hero.jpg"), body)
 
 print("done")
