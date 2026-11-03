@@ -357,3 +357,11 @@ a:focus-visible,button:focus-visible,.hamburger:focus-visible,.drop-toggle:focus
 /* Hover fix: images zoom only — no blur, no darkening on hover (blur was damaging the design). */
 .card:hover .media img{transform:scale(1.07);filter:none}
 .split:hover .media img{transform:scale(1.05);filter:none}
+
+/* Footer design: column headings in ABROFIT green, all link text stays white. */
+footer{position:relative}
+footer::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent)}
+footer h4{color:var(--green)}
+footer h4::after{content:"";display:block;width:28px;height:2px;background:var(--green);margin-top:8px}
+footer a{transition:color .25s ease}
+footer a:hover{color:#fff}
