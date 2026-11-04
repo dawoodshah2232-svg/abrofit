@@ -42,12 +42,12 @@ p{color:#d7d9db}
 .hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden}
 .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,.15) 0%,rgba(9,9,9,.15) 55%,rgba(9,9,9,1) 100%)}
-.hero-inner{position:relative;z-index:2;padding:90px 0 70px;width:100%}
+.hero-inner{position:relative;z-index:2;padding:90px 22px 70px;width:100%}
 .hero .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .page-hero{position:relative;min-height:58vh;display:flex;align-items:flex-end;overflow:hidden}
 .page-hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5)}
 .page-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,.2),rgba(9,9,9,1) 96%)}
-.page-hero .hero-inner{padding:70px 0 54px}
+.page-hero .hero-inner{padding:70px 22px 54px}
 /* Grids / cards — blur-on-hover signature */
 .grid{display:grid;gap:22px}
 .grid.two{grid-template-columns:1fr 1fr}

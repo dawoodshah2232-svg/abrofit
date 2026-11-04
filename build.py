@@ -43,7 +43,7 @@ def head(title, desc, fname, ogimg="assets/images/home-workout.jpg"):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} | ABROFIT by LARGAMS FITNESS</title><meta name="description" content="{desc}">
 <link rel="canonical" href="{PAGES}{fname}"><meta property="og:title" content="{title} — ABROFIT"><meta property="og:description" content="{desc}"><meta property="og:type" content="website"><meta property="og:url" content="{PAGES}{fname}"><meta property="og:image" content="{PAGES}{ogimg}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet"><link rel="icon" type="image/png" href="assets/logo-abrofit-clear.png"><link rel="stylesheet" href="assets/style.css?v=20261104f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet"><link rel="icon" type="image/png" href="assets/logo-abrofit-clear.png"><link rel="stylesheet" href="assets/style.css?v=20261104g">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"ABROFIT","url":"{PAGES}","parentOrganization":{{"@type":"Organization","name":"LARGAMS FITNESS","url":"{LARG_SITE}"}},"sameAs":["{IG_ABRO}","{IG_LARG}"],"description":"ABROFIT is the online fitness division of LARGAMS FITNESS: personalized online coaching, workout plans and diet plans for people worldwide."}}</script></head>"""
 
 def header(active):
@@ -60,11 +60,11 @@ def page(fname, title, desc, hero, body, ogimg="assets/images/home-workout.jpg")
     print("wrote", fname, len(html))
 
 def hero_index():
-    return f"""<section class="hero"><img class="bg" src="assets/images/home-workout.jpg" alt="Woman doing a home workout on a mat"><div class="wrap hero-inner"><p class="kicker">ABROFIT &mdash; by LARGAMS FITNESS</p><h1 class="hero-title">Fit Abroad. <span class='green-word'>1 Hour</span> A Day.</h1><p class="lead">Abroad? No gym? No time? No problem. A personal coach, a personalized plan, and a diet built for you &mdash; online, wherever you live.</p><div class="btns"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a><a class="btn ghost" href="programs.html">See Programs &rarr;</a></div></div></section>"""
+    return f"""<section class="hero hero-center"><img class="bg" src="assets/images/home-workout.jpg" alt="Woman doing a home workout on a mat"><div class="wrap hero-inner"><p class="kicker">ABROFIT &mdash; by LARGAMS FITNESS</p><h1 class="hero-title">Fit Abroad. <span class='green-word'>1 Hour</span> A Day.</h1><p class="lead">Abroad? No gym? No time? No problem. A personal coach, a personalized plan, and a diet built for you &mdash; online, wherever you live.</p><div class="btns"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a><a class="btn ghost" href="programs.html">See Programs &rarr;</a></div></div></section>"""
 
 def page_hero(kicker, title, lead, img, cta=True, alt="ABROFIT photo"):
     btns = f'<div class="btns"><a class="btn" href="{WA_JOIN}">Book A Free Consultation</a><a class="btn ghost" href="programs.html">See Programs &rarr;</a></div>' if cta else ""
-    return f"""<section class="page-hero"><img class="bg" src="{img}" alt="{alt}"><div class="wrap hero-inner"><p class="kicker">{kicker}</p><h1 class="hero-title">{title}</h1><p class="lead">{lead}</p>{btns}</div></section>"""
+    return f"""<section class="page-hero hero-center"><img class="bg" src="{img}" alt="{alt}"><div class="wrap hero-inner"><p class="kicker">{kicker}</p><h1 class="hero-title">{title}</h1><p class="lead">{lead}</p>{btns}</div></section>"""
 
 def section(kicker, h2, lead, inner="", tight=False):
     cls = "section tight" if tight else "section"
